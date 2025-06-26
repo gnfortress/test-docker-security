@@ -1,0 +1,18 @@
+name: Docker 보안 스캔 테스트
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Docker 보안 스캐너 실행
+        uses: gnfortress/docker-security-scanner@v1
+        with:
+          image: nginx:latest
